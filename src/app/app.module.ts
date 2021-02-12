@@ -9,6 +9,7 @@ import {
   NbIconModule
 } from '@nebular/theme';
 import {NbEvaIconsModule} from '@nebular/eva-icons';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {NbEvaIconsModule} from '@nebular/eva-icons';
     NbSidebarModule.forRoot(), // NbSidebarModule.forRoot(), //if this is your app.module
     NbButtonModule,
     NbIconModule,
-    NbEvaIconsModule
+    NbEvaIconsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
