@@ -67,7 +67,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     const sourceExampleFromNlsc = new WMTS({
       url: `https://wmts.nlsc.gov.tw/wmts/EMAP5/default/EPSG:3857/{TileMatrix}/{TileRow}/{TileCol}`,
-      layer: 'EMAP2',
+      layer: 'EMAP',
       crossOrigin: 'anonymous',
       requestEncoding: 'REST',
       matrixSet: 'GoogleMapsCompatible',
@@ -84,7 +84,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     });
 
     const myWMTS = new WMTS({
-      attributions: `© <a href="https://emap.nlsc.gov.tw">臺灣通用電子地圖</a>`,
+      attributions: `© <a href="https://maps.nlsc.gov.tw/">臺灣通用電子地圖</a>`,
       url: `https://wmts.nlsc.gov.tw/wmts`,
       layer: `EMAP2`,
       matrixSet: 'EPSG:3857',
@@ -98,12 +98,38 @@ export class AppComponent implements OnInit, AfterViewInit {
       style: 'default',
     });
 
+    const photoWMTSSource = new WMTS({
+      attributions: `© <a href="https://maps.nlsc.gov.tw/">臺灣通用電子地圖</a>`,
+      url: `https://wmts.nlsc.gov.tw/wmts`,
+      layer: `PHOTO2`,
+      matrixSet: 'EPSG:3857',
+      format: 'image/png',
+      projection: proj3857,
+      tileGrid: new WMTSTileGrid({
+        origin: getTopLeft(projectionExtent),
+        resolutions,
+        matrixIds
+      }),
+      style: 'default',
+    });
+
+    const layerEMAP2 = new TileLayer({
+      source: myWMTS
+    });
+    layerEMAP2.set(`id`, `EMAP2`);
+
+    const layerPHOTO2 = new TileLayer({
+      source: photoWMTSSource,
+      visible: false
+    });
+    layerPHOTO2.set(`id`, `PHOTO2`);
+
+
     this.map = new Map({
       target: 'map',
       layers: [
-        new TileLayer({
-          source: myWMTS
-        })
+        layerEMAP2,
+        layerPHOTO2
       ],
       view: new View({
         center: olProj.fromLonLat([121.520425, 25.052688]),
@@ -113,5 +139,23 @@ export class AppComponent implements OnInit, AfterViewInit {
         new ScaleLine({}),
       ]),
     });
+  }
+
+  onLayer(id: string): void {
+    if (id) {
+      if (this.map) {
+        const layers = this.map.getLayers();
+
+        if (layers) {
+          for (const layer of layers.getArray()) {
+            if (layer.get(`id`) === id) {
+              layer.setVisible(true);
+            } else {
+              layer.setVisible(false);
+            }
+          }
+        }
+      }
+    }
   }
 }
