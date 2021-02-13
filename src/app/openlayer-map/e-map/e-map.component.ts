@@ -5,9 +5,10 @@ import {
 } from '@angular/core';
 import Map from 'ol/Map';
 import View from 'ol/View';
-// import VectorLayer from 'ol/layer/Vector';
-// import Style from 'ol/style/Style';
-// import Icon from 'ol/style/Icon';
+import VectorLayer from 'ol/layer/Vector';
+import VectorSource from 'ol/source/Vector';
+import Style from 'ol/style/Style';
+import Icon from 'ol/style/Icon';
 import OSM from 'ol/source/OSM';
 import * as olProj from 'ol/proj';
 import TileLayer from 'ol/layer/Tile';
@@ -20,7 +21,8 @@ import {ScaleLine, defaults as DefaultControls} from 'ol/control';
 import WMTS from 'ol/source/WMTS';
 import WMTSTileGrid from 'ol/tilegrid/WMTS';
 import {getTopLeft, getWidth} from 'ol/extent';
-
+import Feature from 'ol/Feature';
+import Point from 'ol/geom/Point';
 
 @Component({
   selector: 'app-e-map',
@@ -35,7 +37,8 @@ export class EMapComponent implements OnInit, AfterViewInit {
   constructor(
     private zone: NgZone,
     private changeDetectorRef: ChangeDetectorRef
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.initMap();
@@ -46,6 +49,29 @@ export class EMapComponent implements OnInit, AfterViewInit {
       this.zone.runOutsideAngular(() => this.initMap());
     }
     // setTimeout(()=>this.mapReady.emit(this.Map));
+
+    const ximpleComTw = new Feature({
+      geometry: new Point(olProj.fromLonLat([121.54087, 25.05455])),
+    });
+    ximpleComTw.setStyle(new Style({
+      image: new Icon({
+        crossOrigin: 'anonymous',
+        src: 'assets/image/ximple_logo.png',
+        scale: 0.8,
+      }),
+    }));
+
+    if (this.map) {
+      const layers = this.map.getLayers();
+      if (layers) {
+        const markMe = layers.getArray().find(it => it.get(`id`) === `markMe`);
+        if (markMe) {
+          const mmm = markMe as VectorLayer;
+          mmm.getSource().addFeature(ximpleComTw);
+        }
+      }
+    }
+
   }
 
   initMap(): void {
@@ -120,15 +146,22 @@ export class EMapComponent implements OnInit, AfterViewInit {
     });
     layerPHOTO2.set(`id`, `PHOTO2`);
 
+    const markLayer = new VectorLayer({
+      source: new VectorSource({
+        features: []
+      })
+    });
+    markLayer.set(`id`, 'markMe');
 
     this.map = new Map({
       target: 'map',
       layers: [
         layerEMAP2,
-        layerPHOTO2
+        layerPHOTO2,
+        markLayer
       ],
       view: new View({
-        center: olProj.fromLonLat([121.520425, 25.052688]),
+        center: olProj.fromLonLat([121.54087, 25.05455]),
         zoom: 20
       }),
       controls: DefaultControls().extend([
@@ -144,10 +177,14 @@ export class EMapComponent implements OnInit, AfterViewInit {
 
         if (layers) {
           for (const layer of layers.getArray()) {
-            if (layer.get(`id`) === id) {
-              layer.setVisible(true);
-            } else {
-              layer.setVisible(false);
+            // console.log(`layer type:${typeof(layer)}`);
+            // console.log(`instanceof type: ${layer instanceof VectorLayer}`);
+            if (layer instanceof TileLayer) {
+              if (layer.get(`id`) === id) {
+                layer.setVisible(true);
+              } else {
+                layer.setVisible(false);
+              }
             }
           }
         }
