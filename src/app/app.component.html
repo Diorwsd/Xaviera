@@ -9,26 +9,29 @@
   <!-- Step 2: Add the ngbCollapse directive to the element below. -->
   <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
     <ul class="navbar-nav">
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" [routerLink]="'/material-way/address'" (click)="isMenuCollapsed = true">address</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" [routerLink]="'/material-way/board'" (click)="isMenuCollapsed = true">board</a>
-      </li>
+      </li> -->
 <!--      <li class="nav-item">-->
 <!--        <a class="nav-link" [routerLink]="'/material-way/navigation'" (click)="isMenuCollapsed = true">navigation</a>-->
 <!--      </li>-->
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" [routerLink]="'/openlayer/emap'" (click)="isMenuCollapsed = true">地圖</a>
-      </li>
+      </li> -->
 <!--      <li class="nav-item">-->
 <!--        <a class="nav-link" [routerLink]="'/material-way/tree'" (click)="isMenuCollapsed = true">About</a>-->
 <!--      </li>-->
 <!--      <li class="nav-item">-->
 <!--        <a class="nav-link" [routerLink]="'/material-way/drag-drop'" (click)="isMenuCollapsed = true">About</a>-->
 <!--      </li>-->
+<li class="nav-item">
+  <a class="nav-link" href="https://ximple.com.tw">極簡科技</a>
+</li>
     </ul>
   </div>
 </nav>
 
-<router-outlet></router-outlet>
+<app-e-map></app-e-map>

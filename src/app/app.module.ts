@@ -1,20 +1,19 @@
-import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import {
 //   NbThemeModule, NbLayoutModule, NbSidebarModule, NbButtonModule,
 //   NbIconModule
 // } from '@nebular/theme';
 // import {NbEvaIconsModule} from '@nebular/eva-icons';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { OpenlayerMapModule } from './openlayer-map/openlayer-map.module';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -25,10 +24,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     // NbButtonModule,
     // NbIconModule,
     // NbEvaIconsModule,
-    NgbModule
+    NgbModule,
+    OpenlayerMapModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}

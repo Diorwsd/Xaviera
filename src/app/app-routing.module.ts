@@ -1,21 +1,30 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {MaterialWayModule} from './material-way/material-way.module';
-import {AppComponent} from './app.component';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { MaterialWayModule } from './material-way/material-way.module';
+import { AppComponent } from './app.component';
 
-const routes: Routes = [{
-  path: `material-way`,
-  loadChildren: () => import('./material-way/material-way.module').then(m => m.MaterialWayModule)
-},
-  {path: `openlayer`, loadChildren: () => import('./openlayer-map/openlayer-map.module').then(m => m.OpenlayerMapModule)},
-  {path: '', redirectTo: 'openlayer', pathMatch: 'full'},
+const routes: Routes = [
+  {
+    path: `material-way`,
+    loadChildren: () =>
+      import('./material-way/material-way.module').then(
+        (m) => m.MaterialWayModule
+      ),
+  },
+  {
+    path: `openlayer`,
+    loadChildren: () =>
+      import('./openlayer-map/openlayer-map.module').then(
+        (m) => m.OpenlayerMapModule
+      ),
+  },
+  // {path: '', redirectTo: '/', pathMatch: 'full'},
   // {path: ``, loadChildren: () => import('./openlayer-map/openlayer-map.module').then(m => m.OpenlayerMapModule)},
-  // {path: '**', component: AppComponent}
+  // {path: '/', component: AppComponent}
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}
