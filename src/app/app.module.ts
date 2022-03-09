@@ -10,7 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // } from '@nebular/theme';
 // import {NbEvaIconsModule} from '@nebular/eva-icons';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-// import { OpenlayerMapModule } from './openlayer-map/openlayer-map.module';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,7 +25,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     // NbIconModule,
     // NbEvaIconsModule,
     NgbModule,
-    // OpenlayerMapModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent],
