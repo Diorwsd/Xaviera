@@ -11,20 +11,20 @@ const routes: Routes = [
         (m) => m.MaterialWayModule
       ),
   },
-  {
-    path: `openlayer`,
-    loadChildren: () =>
-      import('./openlayer-map/openlayer-map.module').then(
-        (m) => m.OpenlayerMapModule
-      ),
-  },
+  // {
+  //   path: `openlayer`,
+  //   loadChildren: () =>
+  //     import('./openlayer-map/openlayer-map.module').then(
+  //       (m) => m.OpenlayerMapModule
+  //     ),
+  // },
   // {path: '', redirectTo: '/', pathMatch: 'full'},
   // {path: ``, loadChildren: () => import('./openlayer-map/openlayer-map.module').then(m => m.OpenlayerMapModule)},
   // {path: '/', component: AppComponent}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  imports: [],
+  exports: [],
 })
 export class AppRoutingModule {}

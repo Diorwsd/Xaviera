@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-  <a class="navbar-brand" [routerLink]="'.'">{{title}}</a>
+  <a class="navbar-brand" href=".">{{title}}</a>
 
   <!-- Step 3: Toggle the value of the property when the toggler button is clicked. -->
   <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
@@ -34,4 +34,17 @@
   </div>
 </nav>
 
-<app-e-map></app-e-map>
+<main role="main" class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <button mat-flat-button (click)="onLayer('EMAP2');">臺灣通用電子地圖</button>
+      <button mat-flat-button (click)="onLayer('PHOTO2');">影像圖</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div id="map"></div>
+    </div>
+  </div>
+</main><!-- /.container -->
+
