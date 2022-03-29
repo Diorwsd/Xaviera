@@ -1,6 +1,21 @@
+div.parent {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  //background-color: yellow;
+}
+
 #map {
-  width: 100%;
-  min-height: 60vh;
-  height: calc(100vh - 60px - 40px);
-  //height: 100%;
+  width: 100vw;
+  //min-height: 66vh;
+  //max-height: 100vh;
+  //height: calc(100% - 100px);
+  height: 100vh;
+}
+
+#layers-control {
+  position: absolute;
+  z-index: 10;
+  top: 1em;
+  right: 1em;
 }
