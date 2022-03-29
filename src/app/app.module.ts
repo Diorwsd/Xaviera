@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import {NbEvaIconsModule} from '@nebular/eva-icons';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatButtonModule} from '@angular/material/button';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,7 +26,8 @@ import {MatButtonModule} from '@angular/material/button';
     // NbIconModule,
     // NbEvaIconsModule,
     // NgbModule,
-    MatButtonModule
+    MatButtonModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent],
