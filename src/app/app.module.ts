@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //   NbIconModule
 // } from '@nebular/theme';
 // import {NbEvaIconsModule} from '@nebular/eva-icons';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
@@ -24,7 +24,7 @@ import {MatButtonModule} from '@angular/material/button';
     // NbButtonModule,
     // NbIconModule,
     // NbEvaIconsModule,
-    NgbModule,
+    // NgbModule,
     MatButtonModule
   ],
   providers: [],
